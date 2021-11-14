@@ -1,0 +1,23 @@
+.admin-publication-card-container{
+    margin: 5%;
+}
+
+.admin-publication-card-img{
+    width: 50%;
+}
+
+.admin-publication-card-delete-icon{
+    color: var(--blog-red);
+    position: absolute;
+    right: 0;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.admin-publication-card-delete-edit{
+    color: var(--blog-light-grey);
+    position: absolute;
+    right: 10px;
+    padding: 20px;
+    cursor: pointer;
+}

@@ -1,0 +1,58 @@
+.admin-category-container{
+    display: flex;
+    padding: 5%;
+    justify-content: center;
+}
+
+.admin-category-container-publication-button{
+    width: 100%;
+    margin-bottom: 25px;   
+}
+
+.admin-category-container-form{
+    width: 100%;
+}
+
+.admin-category-container-form-plus{
+    color: var(--blog-green);
+    cursor: pointer;
+    padding-top: 10px;
+}
+
+.admin-category-container-form-plus-disabled{
+    color: var(--blog-dark-grey);
+    cursor: pointer;
+    padding-top: 10px;
+}
+
+.admin-category-container-form-edit{
+    color: var(--blog-light-grey);
+    cursor: pointer;
+}
+
+.admin-category-container-form-save{
+    color: var(--blog-green);
+    cursor: pointer;
+}
+
+.admin-category-container-form-delete{
+    color: var(--blog-red);
+    cursor: pointer;
+}
+
+.admin-category-container-form-delete{
+    color: var(--blog-red);
+    cursor: pointer;
+}
+
+.admin-category-editting-input{
+    border: none;
+}
+
+.admin-category-editting-tr{
+    border: solid var(--blog-dark-grey);
+}
+
+.admin-category-container-new-category{
+    width: 70%;
+}

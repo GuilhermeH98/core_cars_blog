@@ -1,0 +1,8 @@
+<p class="text-secondary" [ngClass]="{
+        'text-danger': type.ERROR === messageType, 
+        'text-warning': type.WARNING === messageType, 
+        'text-info': type.INFO === messageType, 
+        'text-success': type.SUCCESS === messageType
+        }">
+    {{ message }}
+</p>

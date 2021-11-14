@@ -1,0 +1,20 @@
+<div class="row admin-publication-card-container">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+            <i class="fa fa-edit fa-lg mr-4 admin-publication-card-delete-edit" (click)="edit()"></i>
+            <i class="fa fa-trash fa-lg admin-publication-card-delete-icon" (click)="delete()"></i>
+            <div class="text-center">
+                <img class="card-img-top admin-publication-card-img" [src]="image" alt=""/>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"> {{ title }} </h5>
+                <p class="card-text"> {{ content }} </p>
+                <p class="card-text">
+                    <small class="text-muted">Posted by {{user.name}} - </small>
+                    <small class="text-muted"> {{data | dateFormat }} - </small>
+                    <small class="text-muted"> Category: {{category.name}}</small>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

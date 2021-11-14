@@ -1,0 +1,14 @@
+<div class="reader-blog-container">
+    <div class="reader-blog-header">
+    </div>
+    <div class="reader-blog-cards" *ngFor="let publication of publications">
+        <app-reader-blog-card
+            [image]="(publication.photoLink | safeResourceUrl)"
+            [title]="publication.title"
+            [content]="publication.content"
+            [data]="publication.calendar"
+            [category]="publication.categoryDTO"
+            [user]="publication.userDTO">
+        </app-reader-blog-card>
+    </div>
+</div>

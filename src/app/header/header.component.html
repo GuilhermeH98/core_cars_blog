@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-md navbar-light header-navbar">
+    <a class="navbar-brand header-navbar-brand" routerLink="/">LPIII - N2</a>
+    <div class="nav-link header-navbar-signin" *ngIf="(user$ | async) as Login; else login">
+        <a routerLink="/admin"
+            class="header-navbar-admin-options">
+            Admin Options
+        </a>
+        <a
+            href="#"
+            (click)="logout()">
+            Logout
+        </a>
+    </div>
+    <a class="navbar-brand ml-3" id="link" routerLink="/cars">Galeria de Carros</a>
+    <ng-template #login>
+        <a  routerLink="/login"
+            class="nav-link header-navbar-signin header-navbar-admin-options"
+            >Sign in</a>
+    </ng-template>
+</nav>

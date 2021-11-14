@@ -1,0 +1,91 @@
+<div class="admin-category-container">
+    <div class="admin-category-container-new-category">
+        <div class="admin-category-container-publication-button">
+            <button stytype="button" class="btn btn-link" [routerLink]="['/admin']" >
+                    <h6>
+                        <i class="fa mr-2 fa-arrow-left "></i>
+                        Carros
+                    </h6>
+            </button>
+        </div>
+        <div>
+            <form [formGroup]="categoryForm" class="admin-category-container-form">
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Adicionar nova Marca: </label>
+                    <div class="col-7">
+                        <input formControlName="categoryName" class="form-control" type="text" placeholder="Nome"/>
+                        <bg-message
+                            *ngIf="errorMessage && formModel === 'SAVE' "
+                            [message]="errorMessage"
+                            [messageType]="messageTypeError">
+                        </bg-message>
+                    </div>
+                    <div class="col-1">
+                        <i
+                            *ngIf="!categoryForm.invalid; else disableButton"
+                            class="fa fa-plus fa-lg admin-category-container-form-plus"
+                            (click)="saveBrand()">
+                        </i>
+                        <ng-template #disableButton>
+                            <i class="fa fa-plus fa-lg admin-category-container-form-plus-disabled"></i>
+                        </ng-template>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let category of categories"
+                        [ngClass]="{'admin-category-editting-tr': category.editting}">
+                        <td>
+                            <span [hidden]="category.editting">{{ category.name }}</span>
+                            <input
+                                title="title1"
+                                type="text"
+                                class="admin-category-editting-input"
+                                [hidden]="!category.editting"
+                                [(ngModel)]="categoryClone.name"/>
+                            <bg-message
+                                [hidden]="!category.editting"
+                                *ngIf="errorMessage && category.editting && formModel === 'EDIT' "
+                                [message]="errorMessage"
+                                [messageType]="messageTypeError"
+                            ></bg-message>
+                        </td>
+                        <td>
+                            <i
+                                [hidden]="category.editting"
+                                class="fa fa-edit fa-lg mr-4 admin-category-container-form-edit"
+                                (click)="allowEdittingModel(category)">
+                            </i>
+                            <i
+                                [hidden]="category.editting"
+                                class="fa fa-trash fa-lg admin-category-container-form-delete"
+                                (click)="deleteCategory(category)">
+                            </i>
+                            <i
+                                [hidden]="!category.editting"
+                                class="fa fa-check fa-lg mr-4 admin-category-container-form-save"
+                                (click)="editCategory(category)">
+                            </i>
+                            <i
+                                [hidden]="!category.editting"
+                                class="fa fa-times fa-lg admin-category-container-form-delete"
+                                (click)="cancelEdittingModel(category)">
+                            </i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

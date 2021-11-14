@@ -1,0 +1,22 @@
+.header-navbar{
+    background-color: var(--blog-light-grey);
+}
+
+.header-navbar-brand{
+    color: var(--blog-light) !important;
+}
+
+.header-navbar-signin{
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+}
+
+.header-navbar-admin-options{
+    padding: 10px;
+}
+
+#link{
+  color: #fff;
+  font-size: 20px;
+}

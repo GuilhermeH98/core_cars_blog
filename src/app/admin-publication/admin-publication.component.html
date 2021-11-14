@@ -1,0 +1,249 @@
+<div class="admin-publication-container">
+    <div>
+        <h1 class="text-center admin-publication-title">Carros</h1>
+    </div>
+    <div class="admin-publication-buttons">
+        <button type="button" class="btn btn-link " id="brand" [routerLink]="['/brand']" >Marcas</button>
+    </div>
+    <div *ngIf="!carToEdit" class="admin-publication-container-form">
+        <form id="publicationForm" [formGroup]="carFormGroup" class="admin-publication-form" (submit)="savePublication()">
+            <h1 class="admin-blog-container-form-title">Adicionar Carro</h1>
+            <div class="form-group">
+                <label>Nome:</label>
+                <input
+                    formControlName="name"
+                    class="form-control"
+                    placeholder="Digite o Nome..."
+                    maxlength="255"
+                    autofocus
+                    />
+                <bg-message
+                    *ngIf="carFormGroup.get('name').errors?.required"
+                    message="Precisa digitar o nome"
+                    [messageType]="messageType">
+                </bg-message>
+            </div>
+            <div class="form-group">
+                <label>Modelo:</label>
+                <input
+                    formControlName="model"
+                    class="form-control"
+                    maxlength="255"
+                    placeholder="Digite o Modelo..."
+                />
+                <bg-message
+                    *ngIf="carFormGroup.get('model').errors?.required"
+                    message="Precisa digitar o Modelo"
+                    [messageType]="messageType">
+                </bg-message>
+            </div>
+            <div class="form-group">
+                <label>Ano de Fabricação:</label>
+                <input
+                type="number"
+                    formControlName="year"
+
+                    class="form-control"
+                    placeholder="Digite o Ano de Fabricação..."
+                    maxlength="255"
+                    autofocus
+                    />
+                <bg-message
+                    *ngIf="carFormGroup.get('year').errors?.required"
+                    message="Precisa digitar o ano de fabricação"
+                    [messageType]="messageType">
+                </bg-message>
+            </div>
+            <div class="form-group">
+              <label>Tabela Fipe:</label>
+              <input
+                  formControlName="fipe"
+                  class="form-control"
+                  placeholder="Digite Tabela Fipe..."
+                  maxlength="255"
+                  autofocus
+                  />
+              <bg-message
+                  *ngIf="carFormGroup.get('fipe').errors?.required"
+                  message="Precisa digitar tabela fipe"
+                  [messageType]="messageType">
+              </bg-message>
+          </div>
+          <div class="form-group">
+            <label>Combustível:</label>
+            <select
+              title="titleFuel"
+              formControlName="fuel"
+              class="form-control"
+            >
+            <option disabled value=''>Selecione o tipo de combustível</option>
+            <option  value='GASOLINE'>Gasolina</option>
+            <option  value='ETHANOL'>Etanol</option>
+            <option  value='DIESEL'>Diesel</option>
+            </select>
+            <bg-message
+                *ngIf="carFormGroup.get('fuel').errors?.required"
+                message="Precisa selecionar um combustível"
+                [messageType]="messageType">
+            </bg-message>
+          </div>
+          <div class="form-group mb-4">
+            <label>Marca:</label>
+            <select
+              title="titleMarca"
+              formControlName="brand"
+              class="form-control"
+            >
+            <option disabled value=''>Selecione uma marca</option>
+            <option *ngFor="let marca of marcas" [ngValue]='marca'>{{marca.name}}</option>
+            </select>
+            <bg-message
+                *ngIf="carFormGroup.get('fuel').errors?.required"
+                message="Precisa selecionar uma marca"
+                [messageType]="messageType">
+            </bg-message>
+          </div>
+
+            <div>
+                <input
+                   title="title2"
+                    (change)="selectFile($event)"
+                    type="file"
+                    class="form-control-file"
+                    accept="image/png, image/jpeg">
+                <bg-message
+                    *ngIf="hasFileError"
+                    message="File is required"
+                    [messageType]="messageType">
+                </bg-message>
+            </div>
+            <div class="admin-publication-form-footer">
+              <label></label>
+               <!-- <button type="button" class="btn btn-danger" (click)="hiddenPublicationForm()">Cancel</button>-->
+                <button [disabled]="carFormGroup.invalid" class="btn btn-primary" type="submit">Cadastrar</button>
+            </div>
+        </form>
+    </div>
+
+    <div *ngIf="carToEdit" class="admin-publication-container-form">
+      <form id="editForm" [formGroup]="editFormGroup" class="admin-publication-form" (submit)="savePublication()">
+          <h1 class="admin-blog-container-form-title">Editar Carro</h1>
+          <div class="form-group">
+            <label>Nome:</label>
+            <input
+                formControlName="name"
+                class="form-control"
+                placeholder="Digite o Nome..."
+                maxlength="255"
+                autofocus
+                />
+            <bg-message
+                *ngIf="editFormGroup.get('name').errors?.required"
+                message="Precisa digitar o nome"
+                [messageType]="messageType">
+            </bg-message>
+          </div>
+          <div class="form-group">
+              <label>Modelo:</label>
+              <input
+                  formControlName="model"
+                  class="form-control"
+                  maxlength="255"
+                  placeholder="Digite o Modelo..."
+              />
+
+              <bg-message
+                  *ngIf="editFormGroup.get('model').errors?.required"
+                  message="Precisa digitar o Modelo"
+                  [messageType]="messageType">
+              </bg-message>
+          </div>
+          <div class="form-group">
+              <label>Ano de Fabricação:</label>
+              <input
+              type="number"
+
+                  formControlName="year"
+                  class="form-control"
+                  placeholder="Digite o Ano de Fabricação..."
+                  maxlength="255"
+                  autofocus
+                  />
+              <bg-message
+                  *ngIf="editFormGroup.get('year').errors?.required"
+                  message="Precisa digitar o ano de fabricação"
+                  [messageType]="messageType">
+              </bg-message>
+          </div>
+          <div class="form-group ">
+            <label>Tabela Fipe:</label>
+            <input
+                formControlName="fipe"
+                class="form-control"
+                placeholder="Digite Tabela Fipe..."
+                maxlength="255"
+                autofocus
+                />
+            <bg-message
+                *ngIf="editFormGroup.get('fipe').errors?.required"
+                message="Precisa digitar tabela fipe"
+                [messageType]="messageType">
+            </bg-message>
+        </div>
+
+        <div class="form-group">
+          <label>Combustível:</label>
+          <select
+            title="titleFuel"
+            formControlName="fuel"
+            class="form-control"
+          >
+          <option disabled value=''>Selecione o tipo de combustível</option>
+          <option  value='GASOLINE'>Gasolina</option>
+          <option  value='ETHANOL'>Etanol</option>
+          <option  value='DIESEL'>Diesel</option>
+          </select>
+          <bg-message
+              *ngIf="editFormGroup.get('fuel').errors?.required"
+              message="Precisa selecionar um combustível"
+              [messageType]="messageType">
+          </bg-message>
+        </div>
+        <div class="form-group  mb-4">
+          <label>Marca:</label>
+          <select
+            title="titleMarca"
+            formControlName="brand"
+            class="form-control"
+          >
+          <option disabled value=''>Selecione a marca</option>
+          <option *ngFor="let marca of marcas" [ngValue]='marca'>{{marca.name}}</option>
+        </select>
+          <bg-message
+              *ngIf="editFormGroup.get('fuel').errors?.required"
+              message="Precisa selecionar uma marca"
+              [messageType]="messageType">
+          </bg-message>
+        </div>
+          <div>
+              <input
+                 title="title2"
+                  (change)="selectFile($event)"
+                  type="file"
+                  class="form-control-file"
+                  accept="image/png, image/jpeg">
+              <bg-message
+                  *ngIf="hasFileError"
+                  message="File is required"
+                  [messageType]="messageType">
+              </bg-message>
+          </div>
+          <div class="admin-publication-form-footer mt-4">
+            <label></label>
+              <button (click)="deleteCar()" type="button"  class="btn btn-danger desligar"  >Deletar</button>
+              <button (click)="saveEditPublication()" [disabled]="editFormGroup.invalid" class="btn btn-primary" type="submit">Editar</button>
+          </div>
+      </form>
+  </div>
+</div>
+

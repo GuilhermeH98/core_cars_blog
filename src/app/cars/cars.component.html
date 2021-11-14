@@ -1,0 +1,33 @@
+<div class="cars-container">
+
+  <div class="form-row d-flex justify-content-center">
+    <div class=" col-lg-3 ml-sm-0  mb-4">
+      <form [formGroup]="carsFormGroup"  class="form-inline teste">
+        <label class="font-label ml-2 mr-2" for="selectMarca" id="labelMarca">Marca:</label>
+        <select (change)="changeBrand()" formControlName="brand"
+          class="form-control width-brand select-linha" id="selectMarca">
+          <option *ngFor="let marca of marcas" [value]="marca.id"> {{marca.name}}</option>
+        </select>
+      </form>
+      </div>
+    </div>
+    <div  class="row ">
+
+      <div *ngFor="let car of cars" class="col-sm-12 col-lg-4 d-flex justify-content-center pt-4">
+        <div class="flip ">
+          <div class="front" [ngStyle]="{backgroundImage:'url(' + (car.photoLink ? car.photoLink : '')   +  ')'}" >
+            <h2 class="text-shadow">{{car.name}}</h2>
+          </div>
+          <div class="back">
+            <h4 class="pb-2  font-gold">Informações do Carro:</h4>
+            <p><span class="font-white">Modelo:<span class="descricao">&nbsp;{{car.model}}</span></span> </p>
+            <p><span class="font-white">Ano de Fabricação:<span class="descricao">&nbsp;{{car.year}}</span></span> </p>
+            <p><span class="font-white">Tabela Fipe:<span class="descricao">&nbsp;{{car.fipe}}</span> </span></p>
+            <p><span class="font-white">Combustível:<span class="descricao">&nbsp;{{car.fuel}}</span> </span></p>
+            <p (click)="editCar(car)" class="cursor-pointer" ><span class="font-white fa fa-edit fa-lg margin-auto"></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+

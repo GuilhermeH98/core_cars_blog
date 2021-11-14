@@ -1,0 +1,19 @@
+<div class="row reader-blog-card-container">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+            <div class="text-center">
+                <img class="card-img-top reader-blog-card-img" [src]="image" alt=""/>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"> {{ title }} </h5>
+                <p class="card-text"> {{ content }} </p>
+                <p class="card-text">
+                    <small class="text-muted">Posted by {{user.name}} - </small>
+                    <small class="text-muted"> {{data | dateFormat }} - </small>
+                    <small class="text-muted"> Category: {{category.name}}</small>
+                </p>
+                <div class="fb-share-button" data-href="http://frontendblogsupersim.s3-website-sa-east-1.amazonaws.com" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ffrontendblogsupersim.s3-website-sa-east-1.amazonaws.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartilhar</a></div>
+            </div>
+        </div>
+    </div>
+</div>
